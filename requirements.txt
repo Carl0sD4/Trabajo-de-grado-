@@ -1,0 +1,25 @@
+# Núcleo
+numpy>=1.26
+scipy>=1.11
+pandas>=2.1
+openpyxl>=3.1        # leer la hoja de parámetros (.xlsx)
+
+# Simulación (O1 y O3)
+simpy>=4.1
+
+# Modelos (O2)
+scikit-learn>=1.4
+xgboost>=2.0         # alternativa: lightgbm
+shap>=0.44
+
+# Prototipo (O3)
+streamlit>=1.30
+
+# Gráficas
+matplotlib>=3.8
+
+# Pruebas y exploración
+pytest>=8.0
+jupyter>=1.0
+
+# Al final (24 nov) congelar versiones exactas con: pip freeze > requirements-lock.txt
