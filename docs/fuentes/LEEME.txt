@@ -12,4 +12,4 @@ Mischek_Musliu_2021.pdf   https://link.springer.com/content/pdf/10.1007/s10479-0
 Los parámetros que se sacaron de cada uno, con su página, están en
 datos/parametros/Parametros_generador_tesis.xlsx (hojas "Parámetros" y "Fuentes").
 
-Mantengan el repositorio privado: dos de estos PDF tienen derechos de autor de IFAC/Elsevier.
+Los cinco PDF están en esta carpeta.

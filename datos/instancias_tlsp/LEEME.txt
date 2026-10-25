@@ -1,0 +1,43 @@
+Instancias del TLSP (Mischek y Musliu, 2021)
+Referencia para el contraste estructural del Objetivo 1 (bloque del 1 de noviembre).
+
+Origen: https://dbai.tuwien.ac.at/staff/fmischek/TLSP/
+        Conjunto de evaluación: 780 KB comprimido, 14 MB descomprimido.
+Cómo bajarlas (no se suben a git):  python datos/descargar_instancias.py
+Citar: Mischek, F., & Musliu, N. (2021). Annals of Operations Research, 302, 533-562.
+
+CONTENIDO
+30 instancias: 15 de General y 15 de LabStructure. Van de 5 proyectos y 88 franjas
+hasta 90 proyectos y 782 franjas. Cada franja es medio día de trabajo.
+Nombre de cada instancia: <id>_<franjas>_<proyectos>, por ejemplo 000_88_5.
+LabStructure se parece más al laboratorio real; General es más variado.
+
+CUATRO ARCHIVOS XML POR INSTANCIA
+_environment.xml  Recursos: empleados (Employees), mesas de trabajo (Workbenches),
+                  grupos de equipos con sus dispositivos (Equipment/Group/Devices) y
+                  modos de tarea (TaskModes: durationFactor y requiredEmployees).
+                  Ejemplo: Shift 0,67 y 2 empleados; Single 1,0 y 1; External 1,0 y 0.
+_tasks.xml        Proyectos y tareas. Por tarea: Duration (en franjas), ReleaseDate,
+                  DueDate, Deadline, WorkbenchRequired, TaskModes, AvailableWorkbenches,
+                  QualifiedEmployees, PreferredEmployees y EquipmentRequirements
+                  (grupo, demanda y dispositivos disponibles). Por proyecto: LinkedTasks
+                  (tareas que debe hacer el mismo empleado) y TaskFamilies (familias con
+                  tiempo de alistamiento "setup").
+_schedule.xml     Programa base: tareas agrupadas en trabajos (Jobs), trabajos ya
+                  iniciados y tareas fijas.
+_reference.xml    Una solución factible de referencia: modo, franja de inicio y fin,
+                  mesa, empleados y dispositivos de cada trabajo.
+
+EQUIVALENCIAS CON NUESTRO LABORATORIO DE REFERENCIA
+proyecto                        ~ muestra
+tarea                           ~ actividad analítica (un ensayo)
+QualifiedEmployees              ~ matriz de calificación de analistas
+AvailableWorkbenches / Devices  ~ compatibilidad equipo-actividad
+ReleaseDate, DueDate, Deadline  ~ llegada, fecha de entrega y plazo máximo
+setup de la familia             ~ alistamiento (en Costigliola, la idoneidad dura 24 h)
+TaskModes                       sin equivalente directo en nuestro modelo (declararlo)
+
+OJO CON LA ESCALA
+En el TLSP las duraciones están en medios días; en control de calidad farmacéutico,
+en minutos u horas (Costigliola et al., 2017). Comparen estructura (tareas por
+proyecto, densidad de elegibilidad, holgura de plazos), no magnitudes.

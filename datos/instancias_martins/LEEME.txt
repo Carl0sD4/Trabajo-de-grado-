@@ -1,0 +1,30 @@
+Instancias de Martins et al. (2023)
+Referencia para el contraste estructural del Objetivo 1 (bloque del 1 de noviembre).
+
+Origen: https://github.com/miguelsem/Minimizing-total-completion-time-in-large-sized-pharmaceutical-quality-control-scheduling
+        Licencia MIT (copia en LICENSE_martins.txt).
+Cómo bajarlas (no se suben a git):  python datos/descargar_instancias.py
+Citar: Martins, M. S. E., et al. (2023). Journal of Heuristics, 29(1), 177-206.
+
+CONTENIDO
+54 instancias JSON.
+Nombre: ex_j<trabajos>_m<máquinas>_w<analistas>_s<tipos de trabajo>_f<flexibilidad>_r<réplica>.json
+Trabajos 5, 10 o 70 · 7 máquinas · 2, 3 o 7 analistas · 3 tipos de trabajo ·
+flexibilidad 0,3 o 0,6 · 3 réplicas por combinación.
+
+ESTRUCTURA
+n_jobs, n_analysts, n_machines
+jobs[]: job, product (tipo de trabajo 0, 1 o 2), release_time, due_date
+  tests[]: test
+           machine_time                duración de la operación en la máquina
+           analyst_times[]             step (setup, intermediate o teardown) con start y end
+           suitable_analysts[]         analistas que pueden hacer la operación
+           suitable_machines[]         máquinas que pueden hacerla
+
+EQUIVALENCIAS
+job ~ muestra · test ~ actividad analítica · suitable_* ~ calificación y compatibilidad ·
+analyst_times ~ ocupación parcial del analista durante la operación.
+
+OJO
+release_time y due_date valen 0 en las 54 instancias: su experimento minimiza el tiempo
+total de finalización y no usa plazos. Para comparar plazos, usen el TLSP.

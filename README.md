@@ -23,8 +23,9 @@ modelo-predictivo-lab-cc/
 ├── datos/
 │   ├── parametros/       Hoja de parámetros con fuente y página
 │   ├── sinteticos/       Datasets generados (v0.1, v0.2, v1...)
-│   └── instancias_tlsp/  Instancias públicas de TU Wien para el contraste estructural
-├── docs/                 Plan de trabajo y bitácora de asesorías
+│   ├── instancias_tlsp/     Instancias del TLSP (TU Wien) para el contraste estructural
+│   └── instancias_martins/  Instancias de Martins et al. (2023) para el contraste estructural
+├── docs/                 Plan, bitácora de asesorías, documento de tesis y fuentes
 ├── notebooks/            Exploración
 ├── resultados/           Tablas y figuras para el documento
 ├── src/
@@ -52,7 +53,15 @@ No se usan registros reales de ninguna empresa (anteproyecto, §1.4): todo se ge
 simulación calibrada con literatura. Cada parámetro y su fuente (artículo y página) están en
 `datos/parametros/Parametros_generador_tesis.xlsx`.
 
-El documento de tesis (Word) no va en este repositorio: se edita en la carpeta compartida.
+El documento de tesis está en `docs/tesis/`. Es un archivo de Word y git no combina cambios de dos personas:
+hagan pull antes de abrirlo, push apenas lo cierren y nunca lo editen al mismo tiempo.
+
+Las instancias de referencia para el contraste estructural (TLSP y Martins et al., 2023) no se suben
+al repositorio. Para bajarlas:
+
+```bash
+python datos/descargar_instancias.py
+```
 
 ## Avance
 

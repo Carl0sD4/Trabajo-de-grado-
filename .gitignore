@@ -16,5 +16,13 @@ venv/
 # Datasets de prueba (las versiones finales sí se suben)
 datos/sinteticos/borradores/
 
+# Instancias de terceros: se bajan con datos/descargar_instancias.py
+datos/instancias_tlsp/*
+!datos/instancias_tlsp/LEEME.txt
+!datos/instancias_tlsp/.gitkeep
+datos/instancias_martins/*
+!datos/instancias_martins/LEEME.txt
+
+
 # Streamlit
 .streamlit/secrets.toml
