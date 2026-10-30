@@ -34,7 +34,7 @@ tarea                           ~ actividad analítica (un ensayo)
 QualifiedEmployees              ~ matriz de calificación de analistas
 AvailableWorkbenches / Devices  ~ compatibilidad equipo-actividad
 ReleaseDate, DueDate, Deadline  ~ llegada, fecha de entrega y plazo máximo
-setup de la familia             ~ alistamiento (en Costigliola, la idoneidad dura 24 h)
+setup de la familia             ~ alistamiento (en Costigliola, la idoneidad vale 24 h)
 TaskModes                       sin equivalente directo en nuestro modelo (declararlo)
 
 OJO CON LA ESCALA

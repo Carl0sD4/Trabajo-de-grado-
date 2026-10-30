@@ -20,6 +20,7 @@ matplotlib>=3.8
 
 # Pruebas y exploración
 pytest>=8.0
+pytest-cov>=5.0     # cobertura: pytest --cov=src.generador.duraciones --cov=src.generador.correlacion --cov-branch
 jupyter>=1.0
 
 # Al final (24 nov) congelar versiones exactas con: pip freeze > requirements-lock.txt

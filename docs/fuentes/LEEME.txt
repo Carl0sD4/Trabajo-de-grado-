@@ -13,3 +13,15 @@ Los parámetros que se sacaron de cada uno, con su página, están en
 datos/parametros/Parametros_generador_tesis.xlsx (hojas "Parámetros" y "Fuentes").
 
 Los cinco PDF están en esta carpeta.
+
+Otras referencias del generador (bloque de factores de correlación). No están en esta carpeta:
+la de Hassi et al. es de acceso abierto y las demás son de suscripción, salvo el preprint de Xu et al.
+
+Hassi et al. (2025)       https://doi.org/10.14445/22315381/IJETT-V73I6P128
+Clemen y Reilly (1999)    https://doi.org/10.1287/mnsc.45.2.208
+Iman y Conover (1982)     https://doi.org/10.1080/03610918208812265
+Moran (1948)              https://doi.org/10.1093/biomet/35.1-2.203
+Xu et al. (2010)          https://doi.org/10.48550/arXiv.1011.2009 (preprint; publicado en
+                          Signal Processing, 2013: https://doi.org/10.1016/j.sigpro.2012.08.005)
+
+Qué se tomó de cada una, con su página o ecuación, está en la hoja "Fuentes" del Excel.
