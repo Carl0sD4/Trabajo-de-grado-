@@ -1,0 +1,197 @@
+fuente,medida,valor
+Este trabajo (dataset v0.2),corridas,9.0
+Este trabajo (dataset v0.2),semanas,52.0
+Este trabajo (dataset v0.2),muestras_alta,19067.333333333332
+Este trabajo (dataset v0.2),muestras_baja,8897.333333333334
+Este trabajo (dataset v0.2),muestras_base,12873.0
+Este trabajo (dataset v0.2),ensayos_alta,22787.0
+Este trabajo (dataset v0.2),ensayos_baja,10618.666666666666
+Este trabajo (dataset v0.2),ensayos_base,15387.666666666666
+Este trabajo (dataset v0.2),registros_alta,19866.0
+Este trabajo (dataset v0.2),registros_baja,10863.0
+Este trabajo (dataset v0.2),registros_base,15674.0
+Este trabajo (dataset v0.2),muestras_por_dia_alta,52.38278388278388
+Este trabajo (dataset v0.2),muestras_por_dia_baja,24.443223443223445
+Este trabajo (dataset v0.2),muestras_por_dia_base,35.36538461538461
+Este trabajo (dataset v0.2),ensayos_por_dia_alta,62.60164835164835
+Este trabajo (dataset v0.2),ensayos_por_dia_baja,29.17216117216117
+Este trabajo (dataset v0.2),ensayos_por_dia_base,42.273809523809526
+Este trabajo (dataset v0.2),tareas_por_trabajo_media,1.1953323571784613
+Este trabajo (dataset v0.2),tareas_por_trabajo_min,1.0
+Este trabajo (dataset v0.2),tareas_por_trabajo_max,3.0
+Este trabajo (dataset v0.2),tareas_por_trabajo_1,0.8529457646508242
+Este trabajo (dataset v0.2),tareas_por_trabajo_2,0.09918880973428319
+Este trabajo (dataset v0.2),tareas_por_trabajo_3,0.04786542561489262
+Este trabajo (dataset v0.2),tipos_de_trabajo,5.0
+Este trabajo (dataset v0.2),analistas,20.0
+Este trabajo (dataset v0.2),equipos,70.0
+Este trabajo (dataset v0.2),configuraciones,10.0
+Este trabajo (dataset v0.2),tecnicas,6.0
+Este trabajo (dataset v0.2),turnos,3.0
+Este trabajo (dataset v0.2),metodos,12.0
+Este trabajo (dataset v0.2),analistas_elegibles_min,3.0
+Este trabajo (dataset v0.2),analistas_elegibles_p10,9.0
+Este trabajo (dataset v0.2),analistas_elegibles_p50,11.0
+Este trabajo (dataset v0.2),analistas_elegibles_p90,15.0
+Este trabajo (dataset v0.2),analistas_elegibles_max,15.0
+Este trabajo (dataset v0.2),analistas_elegibles_media,11.738440784177202
+Este trabajo (dataset v0.2),analistas_elegibles_cv,0.24969263727347554
+Este trabajo (dataset v0.2),analistas_elegibles_p90_p10,1.6666666666666667
+Este trabajo (dataset v0.2),equipos_elegibles_min,2.0
+Este trabajo (dataset v0.2),equipos_elegibles_p10,2.0
+Este trabajo (dataset v0.2),equipos_elegibles_p50,11.0
+Este trabajo (dataset v0.2),equipos_elegibles_p90,41.0
+Este trabajo (dataset v0.2),equipos_elegibles_max,41.0
+Este trabajo (dataset v0.2),equipos_elegibles_media,16.707978850714767
+Este trabajo (dataset v0.2),equipos_elegibles_cv,0.9731935145973711
+Este trabajo (dataset v0.2),equipos_elegibles_p90_p10,20.5
+Este trabajo (dataset v0.2),combinaciones_min,6.0
+Este trabajo (dataset v0.2),combinaciones_p10,18.0
+Este trabajo (dataset v0.2),combinaciones_p50,121.0
+Este trabajo (dataset v0.2),combinaciones_p90,615.0
+Este trabajo (dataset v0.2),combinaciones_max,615.0
+Este trabajo (dataset v0.2),combinaciones_media,231.6456406797363
+Este trabajo (dataset v0.2),combinaciones_cv,1.0903018526088817
+Este trabajo (dataset v0.2),combinaciones_p90_p10,34.166666666666664
+Este trabajo (dataset v0.2),densidad_analistas,0.58692203920886
+Este trabajo (dataset v0.2),densidad_equipos,0.2386854121530681
+Este trabajo (dataset v0.2),densidad_combinaciones,0.16546117191409734
+Este trabajo (dataset v0.2),duracion_min,14.903085
+Este trabajo (dataset v0.2),duracion_p10,60.55959
+Este trabajo (dataset v0.2),duracion_p50,156.9697985
+Este trabajo (dataset v0.2),duracion_p90,522.0140035
+Este trabajo (dataset v0.2),duracion_max,872.354084
+Este trabajo (dataset v0.2),duracion_media,210.02706493265254
+Este trabajo (dataset v0.2),duracion_cv,0.7817520160276377
+Este trabajo (dataset v0.2),duracion_p90_p10,8.619840449712424
+Este trabajo (dataset v0.2),fraccion_analista_min,0.11635351355574913
+Este trabajo (dataset v0.2),fraccion_analista_p10,0.4313011131393296
+Este trabajo (dataset v0.2),fraccion_analista_p50,0.6351016656236357
+Este trabajo (dataset v0.2),fraccion_analista_p90,0.8209563298741631
+Este trabajo (dataset v0.2),fraccion_analista_max,0.98084054580287
+Este trabajo (dataset v0.2),fraccion_analista_media,0.6303116507181327
+Este trabajo (dataset v0.2),fraccion_analista_cv,0.23507244788847664
+Este trabajo (dataset v0.2),fraccion_analista_p90_p10,1.9034412498929891
+Este trabajo (dataset v0.2),holgura_min,0.2932907389800141
+Este trabajo (dataset v0.2),holgura_p10,1.1787270677681843
+Este trabajo (dataset v0.2),holgura_p50,17.202823819672147
+Este trabajo (dataset v0.2),holgura_p90,131.587255364731
+Este trabajo (dataset v0.2),holgura_max,699.6075153255168
+Este trabajo (dataset v0.2),holgura_media,47.84033459825992
+Este trabajo (dataset v0.2),holgura_cv,1.5201378205563092
+Este trabajo (dataset v0.2),holgura_p90_p10,111.63505018501004
+Este trabajo (dataset v0.2),densidad_analistas_por_metodo,0.4833333333333333
+Este trabajo (dataset v0.2),densidad_equipos_por_metodo,0.10714285714285714
+Este trabajo (dataset v0.2),duracion_p50_DSC,160.098858
+Este trabajo (dataset v0.2),duracion_p50_GC,164.638482
+Este trabajo (dataset v0.2),duracion_p50_HPLC,246.1516745
+Este trabajo (dataset v0.2),duracion_p50_KF,83.72713250000001
+Este trabajo (dataset v0.2),duracion_p50_PSA,65.809537
+Este trabajo (dataset v0.2),duracion_p50_XRPD,122.997303
+Este trabajo (dataset v0.2),duracion_max_DSC,299.000279
+Este trabajo (dataset v0.2),duracion_max_GC,398.497728
+Este trabajo (dataset v0.2),duracion_max_HPLC,872.354084
+Este trabajo (dataset v0.2),duracion_max_KF,209.793133
+Este trabajo (dataset v0.2),duracion_max_PSA,144.82097
+Este trabajo (dataset v0.2),duracion_max_XRPD,310.637629
+Este trabajo (dataset v0.2),fraccion_analista_p50_DSC,0.40119367953593427
+Este trabajo (dataset v0.2),fraccion_analista_p50_GC,0.5416937196799265
+Este trabajo (dataset v0.2),fraccion_analista_p50_HPLC,0.6314363750496234
+Este trabajo (dataset v0.2),fraccion_analista_p50_KF,0.8056096532786579
+Este trabajo (dataset v0.2),fraccion_analista_p50_PSA,0.7841841102452181
+Este trabajo (dataset v0.2),fraccion_analista_p50_XRPD,0.49159842352303634
+Este trabajo (dataset v0.2),configuraciones_elegibles_min,1.0
+Este trabajo (dataset v0.2),configuraciones_elegibles_max,2.0
+Este trabajo (dataset v0.2),densidad_configuraciones,0.12953502034421988
+Este trabajo (dataset v0.2),alistamiento_HPLC,0.28559848689543366
+Este trabajo (dataset v0.2),alistamiento_GC,0.26839133732198533
+Este trabajo (dataset v0.2),plazo_h_min,4.0
+Este trabajo (dataset v0.2),plazo_h_max,336.0
+Este trabajo (dataset v0.2),reanalisis_por_ensayo,0.019319579177483264
+Este trabajo (dataset v0.2),fallas_por_corrida,408.3333333333333
+Este trabajo (dataset v0.2),ventanas_por_corrida,280.0
+Martins et al. (2023),instancias,54
+Martins et al. (2023),trabajos,"5, 10, 70"
+Martins et al. (2023),operaciones_min,10
+Martins et al. (2023),operaciones_max,210
+Martins et al. (2023),analistas_por_instancia,"2, 3, 7"
+Martins et al. (2023),maquinas_por_instancia,7
+Martins et al. (2023),flexibilidades,"0.3, 0.6"
+Martins et al. (2023),tipos_de_trabajo,3
+Martins et al. (2023),tareas_por_trabajo_media,2.5470588235294116
+Martins et al. (2023),tareas_por_trabajo_min,2
+Martins et al. (2023),tareas_por_trabajo_max,3
+Martins et al. (2023),tareas_por_trabajo_2,0.45294117647058824
+Martins et al. (2023),tareas_por_trabajo_3,0.5470588235294118
+Martins et al. (2023),intervenciones,3
+Martins et al. (2023),analistas_elegibles_min,1.0
+Martins et al. (2023),analistas_elegibles_p10,1.0
+Martins et al. (2023),analistas_elegibles_p50,1.0
+Martins et al. (2023),analistas_elegibles_p90,4.0
+Martins et al. (2023),analistas_elegibles_max,7.0
+Martins et al. (2023),analistas_elegibles_media,1.9797279958942777
+Martins et al. (2023),analistas_elegibles_cv,0.6802261641008006
+Martins et al. (2023),analistas_elegibles_p90_p10,4.0
+Martins et al. (2023),equipos_elegibles_min,1.0
+Martins et al. (2023),equipos_elegibles_p10,1.0
+Martins et al. (2023),equipos_elegibles_p50,3.0
+Martins et al. (2023),equipos_elegibles_p90,5.0
+Martins et al. (2023),equipos_elegibles_max,7.0
+Martins et al. (2023),equipos_elegibles_media,3.2512188863228126
+Martins et al. (2023),equipos_elegibles_cv,0.4959396350857047
+Martins et al. (2023),equipos_elegibles_p90_p10,5.0
+Martins et al. (2023),combinaciones_min,1.0
+Martins et al. (2023),combinaciones_p10,1.0
+Martins et al. (2023),combinaciones_p50,4.0
+Martins et al. (2023),combinaciones_p90,16.0
+Martins et al. (2023),combinaciones_max,36.0
+Martins et al. (2023),combinaciones_media,7.0033358994098025
+Martins et al. (2023),combinaciones_cv,0.9634393375658844
+Martins et al. (2023),combinaciones_p90_p10,16.0
+Martins et al. (2023),densidad_analistas,0.5153720199909576
+Martins et al. (2023),densidad_equipos,0.46445984090325887
+Martins et al. (2023),densidad_combinaciones,0.25213970628025395
+Martins et al. (2023),duracion_min,1.0
+Martins et al. (2023),duracion_p10,1.0
+Martins et al. (2023),duracion_p50,3.0
+Martins et al. (2023),duracion_p90,4.0
+Martins et al. (2023),duracion_max,4.0
+Martins et al. (2023),duracion_media,2.5909674108288425
+Martins et al. (2023),duracion_cv,0.43854347799715343
+Martins et al. (2023),duracion_p90_p10,4.0
+Martins et al. (2023),fraccion_analista_min,0.25
+Martins et al. (2023),fraccion_analista_p10,0.25
+Martins et al. (2023),fraccion_analista_p50,0.2666666666666666
+Martins et al. (2023),fraccion_analista_p90,0.30000000000000004
+Martins et al. (2023),fraccion_analista_max,0.30000000000000004
+Martins et al. (2023),fraccion_analista_media,0.2668206312548113
+Martins et al. (2023),fraccion_analista_cv,0.07543237348759065
+Martins et al. (2023),fraccion_analista_p90_p10,1.2000000000000002
+Martins et al. (2023),liberacion_max,0.0
+Martins et al. (2023),vencimiento_max,0.0
+Martins et al. (2023),tipos_iguales,True
+Martins et al. (2023),densidad_analistas_f0.3,0.4233479105928085
+Martins et al. (2023),densidad_equipos_f0.3,0.30918367346938774
+Martins et al. (2023),densidad_analistas_f0.6,0.608488826609632
+Martins et al. (2023),densidad_equipos_f0.6,0.6215797625193598
+"TLSP (Mischek y Musliu, 2021)",proyectos_min,5.0
+"TLSP (Mischek y Musliu, 2021)",proyectos_max,90.0
+"TLSP (Mischek y Musliu, 2021)",franjas_min,88.0
+"TLSP (Mischek y Musliu, 2021)",franjas_max,782.0
+"TLSP (Mischek y Musliu, 2021)",trabajos_por_proyecto,4.0
+"TLSP (Mischek y Musliu, 2021)",empleados_calificados_por_trabajo,6.0
+"TLSP (Mischek y Musliu, 2021)",mesas_por_trabajo,5.0
+"TLSP (Mischek y Musliu, 2021)",reales_proyectos_min,59.0
+"TLSP (Mischek y Musliu, 2021)",reales_proyectos_max,74.0
+"TLSP (Mischek y Musliu, 2021)",reales_empleados_min,19.0
+"TLSP (Mischek y Musliu, 2021)",reales_empleados_max,24.0
+"TLSP (Mischek y Musliu, 2021)",reales_mesas,17.0
+"TLSP (Mischek y Musliu, 2021)",reales_grupos,1.0
+"TLSP (Mischek y Musliu, 2021)",reales_empleados_calificados_min,5.33
+"TLSP (Mischek y Musliu, 2021)",reales_empleados_calificados_max,5.7
+"TLSP (Mischek y Musliu, 2021)",reales_mesas_por_trabajo_min,3.06
+"TLSP (Mischek y Musliu, 2021)",reales_mesas_por_trabajo_max,3.48
+"TLSP (Mischek y Musliu, 2021)",reales_densidad_empleados_min,0.22208333333333333
+"TLSP (Mischek y Musliu, 2021)",reales_densidad_empleados_max,0.3
+"TLSP (Mischek y Musliu, 2021)",reales_densidad_mesas_min,0.18
+"TLSP (Mischek y Musliu, 2021)",reales_densidad_mesas_max,0.20470588235294118

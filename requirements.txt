@@ -4,8 +4,7 @@ scipy>=1.11
 pandas>=2.1
 openpyxl>=3.1        # leer la hoja de parámetros (.xlsx)
 
-# Simulación (O1 y O3)
-simpy>=4.1
+# Simulación (O1 y O3): motor propio de eventos discretos (src/simulacion/entorno.py), sin paquetes extra
 
 # Modelos (O2)
 scikit-learn>=1.4

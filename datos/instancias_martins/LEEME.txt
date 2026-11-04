@@ -28,3 +28,6 @@ analyst_times ~ ocupación parcial del analista durante la operación.
 OJO
 release_time y due_date valen 0 en las 54 instancias: su experimento minimiza el tiempo
 total de finalización y no usa plazos. Para comparar plazos, usen el TLSP.
+Los archivos no siguen del todo el artículo: los trabajos tienen 2 o 3 operaciones y los
+tiempos de máquina van de 1 a 4, donde la Tabla 3 (p. 192) dice DU(1, 3) y DU(1, 5). El
+contraste estructural usa los archivos (src/generador/contraste.py).

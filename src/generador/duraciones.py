@@ -21,11 +21,13 @@ La duración de un ensayo (muestrear_ensayo) suma sus tareas como registro.durac
 del sistema corre en paralelo con la preparación del análisis. Las tareas pueden salir
 correlacionadas entre sí (bloque de factores de correlación, src/generador/correlacion.py).
 """
+from functools import lru_cache
+
 import numpy as np
 import pandas as pd
 from scipy import stats
 
-from src.generador import registro
+from src.generador import parametros, registro
 from src.generador.correlacion import como_matriz, uniformes_correlacionadas
 
 FORMA_PERT = 4.0   # λ de la PERT clásica
@@ -129,8 +131,8 @@ def muestrear_ensayo(metodo, n_soluciones, n=1, rng=None, forma=FORMA_PERT, nive
     correlacion: correlación de rangos (ρ de Spearman) entre las tareas. Con None salen
         independientes, como se comparan con la fuente, que da una distribución por tarea y no dice
         nada de su dependencia. Con un número ρ, las cuatro tareas del
-        analista quedan con ese ρ entre sí y los demás pares, como en la hoja «Correlaciones» (hoy,
-        independientes; S04: 0,5, con sensibilidad de 0,3 y 0,7). También recibe una matriz de
+        analista quedan con ese ρ entre sí y los demás pares, independientes, como en la hoja
+        «Correlaciones» (S04: 0,3, con sensibilidad de 0,5 y 0,7). También recibe una matriz de
         6 × 6 en el orden de registro.TAREAS, por ejemplo correlacion.matriz_objetivo(), que es la
         que debe pasar el generador. Las tareas salen entonces de una cópula gaussiana y de
         cuantil_betapert, con las mismas distribuciones de cada tarea.
@@ -150,4 +152,91 @@ def muestrear_ensayo(metodo, n_soluciones, n=1, rng=None, forma=FORMA_PERT, nive
     tareas = pd.DataFrame(x, columns=registro.TAREAS)
     tareas[list(registro.TAREAS_ANALISTA)] *= factor
     tareas.insert(0, "duracion_simulada", registro.duracion(*(tareas[t] for t in registro.TAREAS)))
+    return tareas
+
+
+# ===================================================================== ensayos del generador (secciones 3 a 7)
+TAREA_HOJA = {"t_preparacion": "Preparación de muestra", "t_montaje": "Montaje del equipo",
+              "t_corrida": "Corrida", "t_procesamiento": "Procesamiento de datos"}
+TAREAS_ALISTAMIENTO = ("t_prep_sistema", "t_idoneidad")
+
+
+@lru_cache(maxsize=None)
+def formas_por_tarea(tecnica: str, forma="hoja") -> tuple:
+    """λ de cada tarea de un ensayo de la técnica, en el orden de registro.TAREAS.
+
+    forma: un número, que se usa en las seis tareas (4 es la PERT clásica), o «hoja», que toma la
+    columna «Forma λ» de la hoja «Duraciones» (la propuesta del bloque de duraciones: λ = 1, y λ = 0
+    en las tareas uniformes de la fuente). La preparación y la idoneidad del sistema usan la λ de la
+    corrida de su técnica, porque sus tres puntos siguen la misma regla de ±20 % (S29 y S05).
+    """
+    if forma != "hoja":
+        return (float(forma),) * len(registro.TAREAS)
+    d = parametros.cargar_hoja("Duraciones")
+    if "Forma λ" not in d.columns:
+        raise KeyError("La hoja «Duraciones» no tiene la columna «Forma λ».")
+    d = d[d["Tarea"].isin(TAREA_HOJA.values())].set_index(["Técnica", "Tarea"])
+    lam = {t: float(d.at[(tecnica, nombre), "Forma λ"]) for t, nombre in TAREA_HOJA.items()}
+    lam["t_prep_sistema"] = lam["t_idoneidad"] = lam["t_corrida"]
+    return tuple(lam[t] for t in registro.TAREAS)
+
+
+@lru_cache(maxsize=1)
+def tiempos_promedio_fuente() -> pd.DataFrame:
+    """Tiempos promedio por tarea del modelo de Costigliola et al. (2017, Tabla 6, p. 9019), en minutos.
+
+    Una fila por técnica y una columna por tarea, con los nombres de registro.TAREAS salvo el montaje,
+    que la tabla no separa: t_prep_sistema, t_idoneidad, t_preparacion, t_corrida y t_procesamiento.
+    Vacío donde la fuente marca n.a. Está en la hoja «Duraciones», debajo de la tabla principal.
+    """
+    hoja = parametros._hoja_cruda("Duraciones")   # noqa: SLF001
+    fila_enc = hoja.index[hoja[0].astype(str).eq("Técnica") & hoja[1].astype(str).eq("Prep. del sistema")]
+    if len(fila_enc) != 1:
+        raise KeyError("No encontré la tabla de tiempos promedio de Costigliola et al. (2017, Tabla 6) en la hoja «Duraciones».")
+    k = fila_enc[0]
+    tabla = hoja.iloc[k + 1:k + 7, :6].set_index(0)
+
+    def promedio(texto):
+        texto = str(texto).split("±")[0].strip().replace(",", ".")
+        return float(texto) if texto.replace(".", "").isdigit() else np.nan
+
+    tabla = tabla.apply(lambda col: col.map(promedio))
+    tabla.columns = ["t_prep_sistema", "t_idoneidad", "t_preparacion", "t_corrida", "t_procesamiento"]
+    tabla.index.name = "tecnica"
+    return tabla.astype(float)
+
+
+@lru_cache(maxsize=None)
+def tres_puntos_alistamiento(tecnica: str, margen=None) -> tuple:
+    """Tres puntos de la preparación y de la idoneidad del sistema de una técnica (S29).
+
+    La moda es el tiempo promedio del modelo de Costigliola et al. (2017, Tabla 6, p. 9019), que está
+    en la hoja «Duraciones», y el mínimo y el máximo quedan a ±margen de la moda (S29 propone 20 %,
+    la misma regla de la corrida de HPLC y GC, S05). Solo HPLC y GC tienen alistamiento; en las demás
+    técnicas devuelve ceros.
+    """
+    if tecnica not in registro.TECNICAS_CON_IDONEIDAD:
+        return (0.0, 0.0, 0.0), (0.0, 0.0, 0.0)
+    margen = float(parametros.supuesto("S29")) if margen is None else float(margen)
+    fuente = tiempos_promedio_fuente()
+    sis, ido = float(fuente.at[tecnica, "t_prep_sistema"]), float(fuente.at[tecnica, "t_idoneidad"])
+    return ((sis * (1 - margen), sis, sis * (1 + margen)), (ido * (1 - margen), ido, ido * (1 + margen)))
+
+
+def medias_tareas(puntos: dict, formas) -> dict:
+    """Media BetaPERT de cada tarea, para estimar la duración antes de ejecutarla (regla de despacho)."""
+    return {t: float(media_betapert(*puntos[t], forma=f)) for t, f in zip(registro.TAREAS, formas)}
+
+
+def tareas_desde_uniformes(u, puntos: dict, formas, factor: float) -> dict:
+    """Las seis tareas de una ejecución a partir de seis uniformes ya correlacionadas (cópula gaussiana).
+
+    Cada tarea es el cuantil de su BetaPERT (cuantil_betapert), como en muestrear_ensayo con
+    correlación, y las tareas del analista se multiplican por el factor de su nivel (S07).
+    """
+    a, m, b = (np.array([puntos[t][k] for t in registro.TAREAS]) for k in range(3))
+    x = np.asarray(cuantil_betapert(np.asarray(u, dtype=float), a, m, b, forma=np.asarray(formas, dtype=float)))
+    tareas = dict(zip(registro.TAREAS, (float(v) for v in x)))
+    for t in registro.TAREAS_ANALISTA:
+        tareas[t] *= factor
     return tareas

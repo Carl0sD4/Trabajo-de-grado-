@@ -35,7 +35,7 @@ def test_la_hoja_correlaciones_toma_el_rho_de_s04():
     assert list(hoja.loc[registro.TAREAS, "La hace"]) == quien
 
 
-@pytest.mark.parametrize("rho", [0.3, 0.7])
+@pytest.mark.parametrize("rho", [0.5, 0.7])
 def test_la_sensibilidad_cambia_solo_las_tareas_del_analista(rho):
     base, otra = co.matriz_objetivo(), co.matriz_objetivo(rho)
     for a in registro.TAREAS:
@@ -149,7 +149,7 @@ def test_la_correlacion_no_cambia_la_distribucion_de_cada_tarea():
 
 
 def test_muestrear_ensayo_recibe_la_correlacion_de_varias_formas():
-    objetivo = co.matriz_objetivo()
+    objetivo = co.matriz_objetivo(0.5)
     numero = du.muestrear_ensayo("M02", 4, n=1000, rng=5, correlacion=0.5)
     for otra in (objetivo, objetivo.to_numpy(), objetivo.iloc[::-1, ::-1]):
         pd.testing.assert_frame_equal(numero, du.muestrear_ensayo("M02", 4, n=1000, rng=5, correlacion=otra))
@@ -176,7 +176,7 @@ def test_v2_compara_la_matriz_dentro_de_grupos():
                 partes.append(t.assign(metodo=metodo, n_soluciones=n_soluciones, nivel_analista=nivel,
                                        idoneidad_ejecutada=False))
     registros = pd.concat(partes, ignore_index=True)
-    objetivo = co.matriz_objetivo()
+    objetivo = co.matriz_objetivo(0.5)
     por_grupos = co.correlacion_por_grupos(registros)
     assert co.error_maximo(por_grupos, objetivo) < 0.02
     assert por_grupos[["t_prep_sistema", "t_idoneidad"]].isna().all().all()   # fijas en cero en estos grupos
@@ -215,7 +215,7 @@ def _grupos_chicos(rho, grupos=400, n=12, semilla=0):
 
 
 def test_v2_con_grupos_chicos_compara_con_la_esperada():
-    objetivo = co.matriz_objetivo()
+    objetivo = co.matriz_objetivo(0.5)
     v2 = co.verificar_por_grupos(_grupos_chicos(0.5), objetivo, por=("grupo",))
     assert len(v2) == 15 and v2["cumple"].all() and co.veredicto_v2(v2) == "cumple"
     analista = v2[v2["objetivo"].eq(0.5)]
@@ -266,12 +266,12 @@ def test_indicador_v2_usa_solo_las_ejecuciones_terminadas():
     cortadas = registros.sample(600, random_state=1).index
     registros.loc[cortadas, registro.TAREAS] *= np.random.default_rng(1).uniform(0, 1, size=(600, len(registro.TAREAS)))
     registros.loc[cortadas, "resultado"] = "interrumpido"
-    v2 = co.indicador_v2(registros)
+    v2 = co.indicador_v2(registros, 0.5)
     tareas = v2["tareas"]
     assert tareas["registros"].max() == len(registros) - 600
     assert (tareas["obtenida"] - tareas["esperada"]).abs().max() < 0.03 and v2["veredicto"] == "cumple"
     # con las interrumpidas, las tareas del analista se separan de la objetivo
-    todas = co.verificar_por_grupos(registros, co.matriz_objetivo())
+    todas = co.verificar_por_grupos(registros, co.matriz_objetivo(0.5))
     assert (todas["obtenida"] - todas["esperada"]).abs().max() > 0.05 and co.veredicto_v2(todas) == "no cumple"
     estructura = v2["estructura"].set_index(["variable_1", "variable_2"])
     assert len(estructura) == 6

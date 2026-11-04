@@ -252,3 +252,59 @@ def test_ensayo_misma_semilla_mismos_valores():
 def test_soluciones_fuera_del_rango_de_la_complejidad(metodo, n_soluciones):
     with pytest.raises(ValueError):
         du.muestrear_ensayo(metodo, n_soluciones)
+
+
+# ===================================================================== funciones del motor (generador, secciones 6 y 7)
+def test_forma_de_cada_tarea_desde_la_hoja():
+    assert du.formas_por_tarea("HPLC", 4) == (4.0,) * len(registro.TAREAS)
+    psa = dict(zip(registro.TAREAS, du.formas_por_tarea("PSA")))
+    assert psa["t_montaje"] == 0 and psa["t_corrida"] == 1          # columna «Forma λ» de la hoja «Duraciones»
+    hplc = dict(zip(registro.TAREAS, du.formas_por_tarea("HPLC")))
+    assert hplc["t_prep_sistema"] == hplc["t_idoneidad"] == hplc["t_corrida"]
+
+
+def test_la_hoja_sin_la_columna_forma(monkeypatch):
+    hoja = parametros.cargar_hoja("Duraciones").drop(columns="Forma λ")
+    monkeypatch.setattr(parametros, "cargar_hoja", lambda nombre: hoja)
+    du.formas_por_tarea.cache_clear()
+    try:
+        with pytest.raises(KeyError):
+            du.formas_por_tarea("GC")
+    finally:
+        du.formas_por_tarea.cache_clear()
+
+
+def test_tiempos_promedio_de_la_fuente():
+    t = du.tiempos_promedio_fuente()                                   # Costigliola et al. (2017, Tabla 6)
+    assert (t.at["HPLC", "t_prep_sistema"], t.at["HPLC", "t_idoneidad"]) == (207, 227)
+    assert (t.at["GC", "t_prep_sistema"], t.at["GC", "t_idoneidad"]) == (67, 152)
+    assert np.isnan(t.at["PSA", "t_idoneidad"])
+
+
+def test_la_hoja_sin_la_tabla_de_tiempos_promedio(monkeypatch):
+    monkeypatch.setattr(parametros, "_hoja_cruda", lambda nombre: pd.DataFrame({0: ["Técnica"], 1: ["Otra"]}))
+    du.tiempos_promedio_fuente.cache_clear()
+    try:
+        with pytest.raises(KeyError):
+            du.tiempos_promedio_fuente()
+    finally:
+        du.tiempos_promedio_fuente.cache_clear()
+
+
+def test_tres_puntos_del_alistamiento():
+    sis, ido = du.tres_puntos_alistamiento("HPLC", 0.2)                # S29: la Tabla 6 ± 20 %
+    assert np.allclose(sis, (207 * 0.8, 207, 207 * 1.2)) and np.allclose(ido, (227 * 0.8, 227, 227 * 1.2))
+    assert du.tres_puntos_alistamiento("PSA") == ((0.0, 0.0, 0.0), (0.0, 0.0, 0.0))
+
+
+def test_tareas_desde_uniformes_y_medias():
+    puntos = registro.tres_puntos_tareas("M02", 3, *du.tres_puntos_alistamiento("HPLC"))
+    formas = du.formas_por_tarea("HPLC")
+    medias = du.medias_tareas(puntos, formas)
+    mitad = du.tareas_desde_uniformes([0.5] * 6, puntos, formas, 1.0)
+    for t in registro.TAREAS:
+        a, _, b = puntos[t]
+        assert a <= mitad[t] <= b and a <= medias[t] <= b
+    doble = du.tareas_desde_uniformes([0.5] * 6, puntos, formas, 2.0)  # el factor del nivel (S07)
+    assert all(doble[t] == pytest.approx(2 * mitad[t]) for t in registro.TAREAS_ANALISTA)
+    assert all(doble[t] == mitad[t] for t in ("t_idoneidad", "t_corrida"))

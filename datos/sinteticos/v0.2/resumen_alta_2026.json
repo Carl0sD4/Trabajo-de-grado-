@@ -1,0 +1,26 @@
+{
+ "ejecuciones_en_curso_al_cierre": 2,
+ "procesamientos_pendientes_al_cierre": 12,
+ "ejecuciones_en_cola_al_cierre": 3610,
+ "version": "v0.2",
+ "escenario": "alta",
+ "carga": 1.5,
+ "semilla": 2026,
+ "semanas": 52,
+ "configuracion": {
+  "forma": "hoja",
+  "rho": null,
+  "alistamiento": "24h"
+ },
+ "regla_de_despacho": "generador",
+ "muestras": 19299,
+ "urgentes": 1084,
+ "ensayos_pedidos": 23087,
+ "registros": 19952,
+ "registros_que_cumplen_las_reglas": 19952,
+ "reanalisis": 432,
+ "interrumpidos": 55,
+ "fallas": 409,
+ "ventanas": 280,
+ "segundos": 96.5
+}

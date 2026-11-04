@@ -192,8 +192,8 @@ def tres_puntos_tareas(metodo: str, n_soluciones: int, prep_sistema=(0.0, 0.0, 0
 
     Salen de la hoja «Duraciones» (Costigliola et al., 2017, Tabla 3, p. 9016) y de la corrida del
     método; la preparación del análisis es el tiempo por solución por el número de soluciones
-    (p. 9019). La preparación y la idoneidad del sistema se pasan solo si el registro las necesita;
-    sus tres puntos siguen pendientes (docs/Generador_de_datos.docx, sección 1.10).
+    (p. 9019). La preparación y la idoneidad del sistema se pasan solo si el registro las necesita,
+    con los tres puntos de S29 (duraciones.tres_puntos_alistamiento); por omisión valen cero.
     """
     catalogo, _, _, _, duraciones = _hojas()
     tecnica = catalogo.at[metodo, "Técnica"]

@@ -22,13 +22,8 @@ MARTINS_URL = ("https://github.com/miguelsem/Minimizing-total-completion-time-in
 
 
 def bajar(url: str) -> bytes:
-    try:
-        with urllib.request.urlopen(url, timeout=120) as respuesta:
-            return respuesta.read()
-    except Exception as error:  # noqa: BLE001
-        sys.exit(f"No se pudo descargar {url}\n{error}\n"
-                 "En Mac, si el error es de certificados, instala certifi (pip install certifi) "
-                 "o córrelo en Cloud Shell.")
+    with urllib.request.urlopen(url, timeout=120) as respuesta:
+        return respuesta.read()
 
 
 def instancias_tlsp(destino: Path) -> None:
@@ -66,5 +61,15 @@ def instancias_martins(destino: Path) -> None:
 
 
 if __name__ == "__main__":
-    instancias_tlsp(CARPETA_DATOS / "instancias_tlsp")
-    instancias_martins(CARPETA_DATOS / "instancias_martins")
+    # Cada conjunto se baja por separado: si uno falla, el otro sigue
+    fallas = []
+    for nombre, funcion, carpeta in (("TLSP", instancias_tlsp, "instancias_tlsp"),
+                                     ("Martins", instancias_martins, "instancias_martins")):
+        try:
+            funcion(CARPETA_DATOS / carpeta)
+        except Exception as error:  # noqa: BLE001
+            fallas.append(nombre)
+            print(f"{nombre}: no se pudo descargar ({error}).")
+    if fallas:
+        sys.exit("En Mac, si el error es de certificados, instala certifi (pip install certifi) o córrelo en Cloud "
+                 "Shell. También se puede bajar el archivo a mano desde la dirección del LEEME de su carpeta.")

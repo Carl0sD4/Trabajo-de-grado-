@@ -10,7 +10,7 @@ Qué se correlaciona. La dependencia principal entre complejidad, número de sol
 es estructural y no se induce: el número de soluciones sale del rango de la complejidad (S08) y la
 preparación es el tiempo por solución por el número de soluciones (Costigliola et al., 2017,
 p. 9019). La correlación se induce solo en el ruido, entre las tareas de una misma ejecución: las
-cuatro del analista con ρ = 0,5 (S04, con sensibilidad de 0,3 y 0,7) y la idoneidad y la corrida,
+cuatro del analista con ρ = 0,3 (S04, con sensibilidad de 0,5 y 0,7) y la idoneidad y la corrida,
 que son del equipo, independientes. Todos los ρ son correlaciones de rangos (Spearman).
 
 Dos maneras de inducirla:
