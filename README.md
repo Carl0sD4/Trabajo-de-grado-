@@ -18,7 +18,7 @@ control de calidad farmacéutico de referencia.
 ## Estructura
 
 ```
-modelo-predictivo-lab-cc/
+laboratorio/
 ├── app/                  Prototipo funcional (Streamlit) · O3
 ├── datos/
 │   ├── parametros/       Hoja de parámetros: 21 hojas, cada valor con su fuente y página
@@ -34,6 +34,7 @@ modelo-predictivo-lab-cc/
 │   ├── Resultados_O1_borrador.docx          O1 · Borrador de la sección de resultados del O1 para la tesis
 │   ├── Plan_trabajo_de_grado.pdf            Plan del 25 de octubre al 30 de noviembre
 │   ├── Bitacora_asesorias.docx              Qué se lleva a cada asesoría con Bravo y qué se decide
+│   ├── reuniones/        Preparación de cada asesoría con Bravo y guías de trabajo para Aldair
 │   ├── fuentes/          PDF de las cinco fuentes de calibración
 │   └── tesis/            Documento de tesis
 ├── notebooks/
@@ -115,9 +116,11 @@ simulación calibrada con literatura. Cada parámetro y su fuente (artículo y p
 y qué celdas son decisiones (las amarillas). Los supuestos que no salen de las fuentes están en la
 hoja «Supuestos», con sus escenarios de sensibilidad.
 
-El documento de tesis está en `docs/tesis/`. Es un archivo de Word y git no combina cambios de dos personas:
-hagan pull antes de abrirlo, push apenas lo cierren y nunca lo editen al mismo tiempo. Lo mismo vale
-para los otros documentos de Word y para el Excel de parámetros.
+El documento de tesis está en `docs/tesis/Trabajo_de_grado.docx`. Desde el 4 de noviembre reúne el borrador
+del 2 de noviembre (marco teórico ampliado y metodología de Aldair) con los capítulos que faltan, marcados
+como pendientes: trabajen sobre este archivo y no sobre copias aparte. Es un archivo de Word y git no combina
+cambios de dos personas: hagan pull antes de abrirlo, push apenas lo cierren y nunca lo editen al mismo
+tiempo. Lo mismo vale para los otros documentos de Word y para el Excel de parámetros.
 
 Las instancias de referencia para el contraste estructural (TLSP y Martins et al., 2023) no se suben
 al repositorio. Para bajarlas:
